@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@300;400;500;700&display=swap");
+
+*,
+*::before,
+*::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	/*color*/
+	--black-tile: ##000000;
+	--black: #1b1b1b;
+	--yellow: #ffd15b;
+	--white: #ffffff;
+	--grey: #7a7a7a;
+	--background: #ededed;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	background-color: var(--background);
+}
+
+.body-container {
+	width: 100%;
+	max-width: 1440px;
+	min-width: 320px;
+	padding: 0 50px;
+}
+
+main {
+	margin-top: 20px;
+	font-family: "Manrope", sans-serif;
+}
+
+h1 {
+	font-family: "Anton", sans-serif;
+}
+/****HEADER****/
+.banner-container {
+	position: relative;
+	/* width: 100%; */
+	margin: 0 auto;
+	/* height: 300px; */
+	width: 100%;
+}
+
+.img-header {
+	width: 100%;
+	height: 570px;
+	object-fit: cover;
+}
+
+a {
+	text-decoration: underline;
+}
+.logo {
+	position: absolute;
+	top: 70px;
+	left: 70px;
+	width: 180px;
+	height: 25px;
+	letter-spacing: 0.5px;
+}
+/*
+img {
+	vertical-align: middle;
+}
+*/
+.banner-search {
+	position: absolute;
+	text-align: center;
+	top: 45%;
+	/* top: 100%; */
+	left: 50%;
+	width: 70%;
+	transform: translate(-50%, -50%);
+}
+
+.title-header {
+	color: var(--yellow);
+
+	font-size: 44px;
+	font-weight: 400;
+	/*height: 60px;
+	margin: 50px 15% 10px;*/
+	text-align: center;
+	padding: 30px;
+}
+
+.search-bar {
+	height: 62px;
+}
+
+.search-icon {
+	position: absolute;
+	right: 0;
+	margin: 10px;
+}
+
+.magnifying-glass:hover {
+	background-color: var(--yellow);
+	color: var(--black);
+	border: none;
+}
+
+/**RESPONSIVE**/
+@media screen and (min-width: 768px) {
+	.img-header {
+		width: 100%;
+		height: 570px;
+	}
+}
+@media (max-width: 767.98px) {
+	.body-container {
+		padding: 0px;
+	}
+
+	.img-header {
+		height: 400px;
+	}
+	.banner-search {
+		top: 58%;
+		left: 50%;
+	}
+
+	.title-header {
+		font-size: 20px;
+	}
+}
+
+/*****Filtres****/
+.filter-section {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+}
+
+.dropdown-content {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 20px 0px 10px 30px;
+	width: 195px;
+	height: 56px;
+	border-radius: 11px;
+	background: #ffffff;
+}
+
+.dropdown-content .fa-chevron-down {
+	position: absolute;
+	top: 50%;
+	right: -54px;
+	transform: translateY(-50%);
+}
+
+.dropdown-search {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	margin: 10px;
+	background-color: #ffffff;
+}

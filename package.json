@@ -1,0 +1,24 @@
+{
+	"name": "projet7_petits_plats_version1",
+	"version": "1.0.0",
+	"description": "projet7_les petits plats_Développez un algorithme de recherche en JavaScript",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"lint": "eslint  scripts/**/*.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hajernaas/P7_Petits_Plats.git"
+	},
+	"author": "Naas Hajer",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/hajernaas/P7_Petits_Plats/issues"
+	},
+	"homepage": "https://github.com/hajernaas/P7_Petits_Plats#readme",
+	"devDependencies": {
+		"eslint": "^8.53.0",
+		"eslint-config-prettier": "^9.0.0"
+	}
+}
