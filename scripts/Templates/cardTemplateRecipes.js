@@ -1,4 +1,4 @@
-function cardTemplateRecipes(data) {
+export default function cardTemplateRecipes(data) {
 	const { id, image, name, servings, ingredients, time, description, appliance, ustensils } = data;
 
 	// Création article
@@ -80,4 +80,6 @@ function cardTemplateRecipes(data) {
 	recipes_container.appendChild(description_recipes);
 	cardBody.appendChild(cardTitle_Ingredients);
 	cardBody.appendChild(ingredients_container);
+
+	return card;
 }
