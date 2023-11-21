@@ -16,7 +16,7 @@
 <body>
     <div class="body-container">
 
-
+        <!-- Header -->
         <header role="banner">
             <div class="banner-container">
                 <img src="./assets/images/img_header.png" class="img-header" alt="background homepage" />
@@ -41,31 +41,42 @@
             </div>
 
         </header>
-
+        <!-- Main -->
         <main class="container mt-2 mb-5">
-            <!-- Section 2 : Filter -->
-
-
-
+            <!-- Section 1 : Filter -->
             <section class="filter-section mt-5">
-                <div class="dropdown-content">
+                <div class="dropdown-content" data-category="ingredients">
                     <div class="dropdown">
-                        <button id="ingredient-toggle" class="btn dropdown-toggle" type="button" aria-haspopup="true"
+                        <button id="ingredient-toggle" class="btn dropdown-toggle " type="button" aria-haspopup="true"
                             aria-expanded="false">
                             Ingrédients
-
+                            <span class="fas fa-chevron-down icon-chevron"></span>
                         </button>
+
                         <div class="dropdown-menu" id="ingredient" aria-labelledby="ingredientDropdownToggle">
                             <div class="dropdown-search">
                                 <div class="input-group">
                                     <input id="ingredient-input" type="search" class="form-control search-input"
                                         placeholder="Rechercher" aria-label="Rechercher" />
 
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-0"><i
+                                                class="fas fa-search"></i></span>
+                                    </div>
+
                                 </div>
 
+                                <div class="ingredients-items">
+                                    <ul id="ingredients-tags">
+                                        <!-- list tag ingredients  -->
+                                    </ul>
+                                </div>
 
                             </div>
+
+
                         </div>
+
                     </div>
                 </div>
 
@@ -75,31 +86,63 @@
                         <button id="appliance-toggle" class="btn dropdown-toggle" type="button" aria-haspopup="true"
                             aria-expanded="false">
                             Appareils
-
+                            <span class="fas fa-chevron-down icon-chevron"></span>
                         </button>
                         <div class="dropdown-menu" id="appliance" aria-labelledby="applianceDropdownToggle">
                             <div class="dropdown-search">
                                 <div class="input-group">
                                     <input id="appliance-input" type="search" class="form-control search-input"
                                         placeholder="Rechercher" aria-label="Rechercher" />
+
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-0"><i
+                                                class="fas fa-search"></i></span>
+                                    </div>
+
                                 </div>
+
+                                <div class="appliances-items">
+                                    <ul id="appliances-tags">
+                                        <!-- list tag ingredients  -->
+                                    </ul>
+                                </div>
+
 
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+
+
+
                 <div class="dropdown-content">
                     <div class="dropdown">
-                        <button id="utensil-toggle" class="btn dropdown-toggle" type="button" aria-haspopup="true"
+                        <button id="utensil-toggle" class="btn dropdown-toggle " type="button" aria-haspopup="true"
                             aria-expanded="false">
                             Ustensiles
-
+                            <span class="fas fa-chevron-down icon-chevron"></span>
                         </button>
                         <div class="dropdown-menu" id="utensil" aria-labelledby="utensilDropdownToggle">
                             <div class="dropdown-search">
                                 <div class="input-group">
                                     <input id="utensil-input" type="search" class="form-control search-input"
                                         placeholder="Rechercher" aria-label="Rechercher" />
+
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-0"><i
+                                                class="fas fa-search"></i></span>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="utensils-items">
+                                    <ul id="utensils-tags">
+                                        <!-- list tag ingredients  -->
+                                    </ul>
                                 </div>
 
                             </div>
@@ -111,6 +154,11 @@
 
                 <p class="recipes-count"></p>
             </section>
+
+            <!-- Section 2 : TagContainer -->
+            <section class="tags-section"></section>
+
+            <!-- Section 3 : Card -->
             <section class="recipes-section mt-2 row g-5" aria-label="list of recipes">
 
             </section>

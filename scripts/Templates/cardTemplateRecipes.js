@@ -1,5 +1,5 @@
 export default function cardTemplateRecipes(data) {
-	const { id, image, name, servings, ingredients, time, description, appliance, ustensils } = data;
+	const { image, name, ingredients, time, description } = data;
 
 	// Création article
 	const card = document.createElement("article");
