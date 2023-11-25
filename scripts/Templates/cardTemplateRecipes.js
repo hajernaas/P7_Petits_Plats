@@ -2,6 +2,7 @@ export default function cardTemplateRecipes(data) {
 	const { image, name, ingredients, time, description } = data;
 
 	// Création article
+
 	const card = document.createElement("article");
 	card.setAttribute("class", "card");
 
