@@ -69,18 +69,38 @@ export async function addTag(arrayRecipes, searchInput) {
 	optionsAppliances.innerHTML = "";
 
 	arrayIngredient.forEach((ingredient) => {
-		const li = `<li class="ingredient-tag tag  " data-value="ingredient">${ingredient} </li>`;
-		optionsIngedients.insertAdjacentHTML("beforeend", li);
+		const cls = ["ingredient-tag", "tag"];
+		const itemIngredient = document.createElement("li");
+		itemIngredient.classList.add(...cls);
+		itemIngredient.setAttribute("data-value", "ingredient");
+		itemIngredient.innerText = ingredient;
+		optionsIngedients.appendChild(itemIngredient);
+		/*const li = `<li class="ingredient-tag tag  " data-value="ingredient">${ingredient} </li>`;
+		optionsIngedients.insertAdjacentHTML("beforeend", li);*/
 	});
 
 	arrayUstensils.forEach((ustensil) => {
-		const li = `<li  class="ustensil-tag tag " data-value="ustensil">${ustensil} </li>`;
-		optionsUstensils.insertAdjacentHTML("beforeend", li);
+		const cls = ["ustensil-tag", "tag"];
+		const itemUstensils = document.createElement("li");
+		itemUstensils.classList.add(...cls);
+		itemUstensils.setAttribute("data-value", "ustensil");
+		itemUstensils.innerText = ustensil;
+		optionsUstensils.appendChild(itemUstensils);
+
+		/*const li = `<li  class="ustensil-tag tag " data-value="ustensil">${ustensil} </li>`;
+		optionsUstensils.insertAdjacentHTML("beforeend", li);*/
 	});
 
 	arrayAppliances.forEach((appliance) => {
-		const li = `<li  class="appliance-tag tag" data-value="appliance">${appliance} </li>`;
-		optionsAppliances.insertAdjacentHTML("beforeend", li);
+		const cls = ["appliance-tag", "tag"];
+		const itemAppliances = document.createElement("li");
+		itemAppliances.classList.add(...cls);
+		itemAppliances.setAttribute("data-value", "appliance");
+		itemAppliances.innerText = appliance;
+		optionsAppliances.appendChild(itemAppliances);
+
+		/*const li = `<li  class="appliance-tag tag" data-value="appliance">${appliance} </li>`;
+		optionsAppliances.insertAdjacentHTML("beforeend", li);*/
 	});
 
 	const tagElements = document.querySelectorAll(".tag");
