@@ -191,6 +191,8 @@ a {
 	/* overflow: scroll; */
 	border-radius: 11px;
 	/* max-height: 270px; */
+	/*display: none;
+	visibility: hidden;*/
 }
 
 .btn:focus {
@@ -212,6 +214,11 @@ ul::-webkit-scrollbar {
 	display: block;
 }
 
+/*.dropdownMenu--active {
+	display: block;
+	visibility: visible;
+}
+*/
 .dropdown-toggle {
 	position: relative;
 }
@@ -307,8 +314,29 @@ ul li {
 	/* padding: 0 13px; */
 }
 
-ul li:hover {
+ul li:hover,
+ul li:focus {
 	background: var(--yellow);
+}
+
+/*ul li .selected {
+	position: relative;
+	background-color: #ffd15b;
+	overflow: hidden; 
+}*/
+li.ingredient-tag.tag.selected {
+	position: relative;
+	background-color: #ffd15b;
+	overflow: hidden;
+	/* display: none; */
+	/* visibility: hidden; */
+}
+
+li.ingredient-tag.tag.selected::after {
+	content: url(../assets/icons/cross-tag-list.svg);
+	position: absolute;
+	right: 5px;
+	top: 3px;
 }
 
 /************TAGS*********/
@@ -530,6 +558,6 @@ ul li:hover {
 	display: flex;
 }
 
-.filter__chevron--up {
+.icon-chevron-up {
 	transform: rotate(0.5turn);
 }

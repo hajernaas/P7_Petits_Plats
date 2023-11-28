@@ -18,17 +18,27 @@ async function searchBar(e) {
 	const searchedString = normalizeValue(searchedWord);
 
 	if (searchedString.length >= 3) {
-		const filtredRecipes = updateFilterElements(recipesArray, searchedString);
+		const filtredRecipes = updateFilterElements(recipesArray);
 		addTag(filtredRecipes, searchedString);
 
 		if (filtredRecipes.length >= 1) {
 			numberRecipes.innerText = `${filtredRecipes.length} recette`;
+			console.log("numSearch1", numberRecipes);
 		} else {
 			numberRecipes.innerText = `${filtredRecipes.length} recettes`;
 			const messageErreur = document.createElement("p");
 			messageErreur.innerText = `Aucune recette ne contient ‘${searchedWord}’ vous pouvez chercher «tarte aux pommes », « poisson », etc.`;
 			recipesSection.appendChild(messageErreur);
 		}
+	} /* else {
+		const filtredRecipes = updateFilterElements(recipesArray, searchedString);
+		console.log("filtreoooo", filtredRecipes);
+		addTag(filtredRecipes, searchedString);
+		numberRecipes.innerText = `${filtredRecipes.length} recettes`;
+		console.log("numsurch2", numberRecipes);
+	} */ else if (searchedString.length == 0) {
+		const filtredRecipes = updateFilterElements(recipesArray);
+		addTag(filtredRecipes, searchedString);
 	} else {
 		numberRecipes.innerText = `${recipesArray.length} recettes`;
 		displayRecipes(recipesArray);

@@ -1,4 +1,5 @@
 import displayRecipes from "../pages/index.js";
+const numberRecipes = document.querySelector(".recipes-count");
 
 export function normalizeValue(value) {
 	return (
@@ -11,10 +12,14 @@ export function normalizeValue(value) {
 	);
 }
 
-export function updateFilterElements(recipes, searchedString) {
+export function updateFilterElements(recipes) {
+	const searchedString = document.getElementById("searchInput").value;
 	let ingredientsArray = [];
 	let appreilxArray = [];
 	let ustensilesArray = [];
+
+	console.log("updateFilterElements ", recipes);
+	console.log("search string {} ", searchedString);
 
 	const allTags = document.querySelectorAll(".tags");
 	for (let i = 0; i < allTags.length; i++) {
@@ -35,18 +40,19 @@ export function updateFilterElements(recipes, searchedString) {
 	let searchRecipes = recipes
 		.filter(
 			(el) =>
+				searchedString.length < 3 ||
 				normalizeValue(el.name).includes(normalizeValue(searchedString)) ||
 				normalizeValue(el.description).includes(normalizeValue(searchedString)) ||
 				el.ingredients.some((element) =>
 					normalizeValue(element.ingredient).includes(normalizeValue(searchedString))
 				)
 		)
-		.filter((el) =>
-			el.ingredients.some(
-				(element) =>
-					ingredientsArray.length == 0 ||
-					ingredientsArray.includes(normalizeValue(element.ingredient))
-			)
+		.filter(
+			(el) =>
+				ingredientsArray.length == 0 ||
+				ingredientsArray.every((ev) =>
+					el.ingredients.some((element) => normalizeValue(element.ingredient) === ev)
+				)
 		)
 		.filter(
 			(el) => appreilxArray.length == 0 || appreilxArray.includes(normalizeValue(el.appliance))
@@ -54,11 +60,14 @@ export function updateFilterElements(recipes, searchedString) {
 		.filter(
 			(el) =>
 				ustensilesArray.length == 0 ||
-				el.ustensils.some((element) => ustensilesArray.includes(normalizeValue(element)))
+				ustensilesArray.every((ev) =>
+					el.ustensils.some((element) => normalizeValue(element) === ev)
+				)
 		);
 
 	console.log("searchRecipes  : ", searchRecipes);
 	displayRecipes(searchRecipes);
-
+	numberRecipes.innerText = `${searchRecipes.length} recette`;
+	console.log("numUpdate", numberRecipes);
 	return searchRecipes;
 }

@@ -27,15 +27,13 @@ async function init() {
 	const dataRecipes = await getRecettesApiData();
 	numberRecipes.innerText = `${dataRecipes.length} recettes`;
 	displayRecipes(dataRecipes);
-
-	getIngredient(dataRecipes);
+	/*getIngredient(dataRecipes);
 	console.log("ttt", getIngredient(dataRecipes));
 	getUstensils(dataRecipes);
 	console.log("uuu", getUstensils(dataRecipes));
 	getAppliances(dataRecipes);
-	console.log("ooo", getAppliances(dataRecipes));
+	console.log("ooo", getAppliances(dataRecipes));*/
 	addTag(dataRecipes, "");
-
 	searchTags();
 }
 

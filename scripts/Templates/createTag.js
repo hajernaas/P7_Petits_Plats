@@ -2,7 +2,6 @@ const tagSection = document.querySelector(".tags-section");
 
 // Function to create a new tag
 export function createTag(tag) {
-	//addTag(recipesFilter);
 	console.log("gg");
 	const categorie = tag.getAttribute("data-value");
 	console.log("categorie", categorie);
