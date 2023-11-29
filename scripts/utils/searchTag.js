@@ -1,27 +1,23 @@
-/*import { getRecettesApiData } from "../Api/api.js";
-
-import { normalizeValue } from "./normalizeValue.js";
-
-import { searchRecipesMainBar } from "./searchMainBar.js";
-import displayRecipes from "../pages/index.js";*/
 import { getRecettesApiData } from "../Api/api.js";
 import { updateFilterElements } from "./updateFilters.js";
 import { createTag } from "../Templates/createTag.js";
+import { removeTag } from "../Templates/removeTag.js";
 import { dropdownToggle } from "./dropdownMenuToggle.js";
+import { normalizeValue, filter } from "./normalizeValue.js";
+import { TagsSelected } from "./utils.js";
 
 const optionsIngedients = document.querySelector("#ingredients-tags");
 const optionsAppliances = document.querySelector("#appliances-tags");
 const optionsUstensils = document.querySelector("#utensils-tags");
-const tagsList = document.querySelector(".tag");
 
 const ingredientInput = document.querySelector("#ingredient-input");
 const applianceInput = document.querySelector("#appliance-input");
 const utensilInput = document.querySelector("#utensil-input");
 
-const ingredientList = document.querySelector(".ingredients-items");
+/*const ingredientList = document.querySelector(".ingredients-items");
 const deviceList = document.querySelector(".appliances-items");
 const ustensilList = document.querySelector(".ustensils-items");
-const search_input = document.querySelector(".search-input");
+const search_input = document.querySelector(".search-input")*/
 
 const ingredientsSearchDropdownMenu = document.getElementById("ingredient");
 const ingredientsSearch = document.getElementById("ingredient-input");
@@ -32,122 +28,17 @@ const appliancesSearch = document.getElementById("appliance-input");
 const utensilSearchDropdownMenu = document.getElementById("utensil");
 const utensilSearch = document.getElementById("utensil-input");
 
-const numberRecipes = document.querySelector(".recipes-count");
+//const numberRecipes = document.querySelector(".recipes-count");
+//const filter = (input) => input.replace(/[<>&"/=]/g, "");
 dropdownToggle();
 
-export function getIngredient(arrayRecipes) {
-	//const recipes = await getRecettesApiData();
-	console.log("recipes", arrayRecipes);
-	const ingredients = arrayRecipes.flatMap((el) =>
-		el.ingredients.map((element) => element.ingredient.toLowerCase())
-	);
-	return Array.from(new Set(ingredients));
-}
-
-export function getUstensils(arrayRecipes) {
-	const ustensils = arrayRecipes
-		.flatMap((el) => el.ustensils)
-		.map((element) => element.toLowerCase());
-	return Array.from(new Set(ustensils));
-}
-
-export function getAppliances(arrayRecipes) {
-	const appliances = arrayRecipes.map((el) => el.appliance.toLowerCase());
-	return Array.from(new Set(appliances));
-}
-
-export async function addTag(arrayRecipes, searchInput) {
-	const arrayIngredient = getIngredient(arrayRecipes);
-	const arrayUstensils = getUstensils(arrayRecipes);
-	const arrayAppliances = getAppliances(arrayRecipes);
-	console.log("arrayIngredient", arrayIngredient);
-	console.log("arrayUstensils", arrayUstensils);
-	console.log("arrayAppliances", arrayAppliances);
-
-	optionsIngedients.innerHTML = "";
-	optionsUstensils.innerHTML = "";
-	optionsAppliances.innerHTML = "";
-
-	arrayIngredient.forEach((ingredient) => {
-		const cls = ["ingredient-tag", "tag"];
-		const itemIngredient = document.createElement("li");
-		itemIngredient.classList.add(...cls);
-		itemIngredient.setAttribute("data-value", "ingredient");
-		itemIngredient.innerText = ingredient;
-		optionsIngedients.appendChild(itemIngredient);
-		/*const li = `<li class="ingredient-tag tag  " data-value="ingredient">${ingredient} </li>`;
-		optionsIngedients.insertAdjacentHTML("beforeend", li);*/
-	});
-
-	arrayUstensils.forEach((ustensil) => {
-		const cls = ["ustensil-tag", "tag"];
-		const itemUstensils = document.createElement("li");
-		itemUstensils.classList.add(...cls);
-		itemUstensils.setAttribute("data-value", "ustensil");
-		itemUstensils.innerText = ustensil;
-		optionsUstensils.appendChild(itemUstensils);
-
-		/*const li = `<li  class="ustensil-tag tag " data-value="ustensil">${ustensil} </li>`;
-		optionsUstensils.insertAdjacentHTML("beforeend", li);*/
-	});
-
-	arrayAppliances.forEach((appliance) => {
-		const cls = ["appliance-tag", "tag"];
-		const itemAppliances = document.createElement("li");
-		itemAppliances.classList.add(...cls);
-		itemAppliances.setAttribute("data-value", "appliance");
-		itemAppliances.innerText = appliance;
-		optionsAppliances.appendChild(itemAppliances);
-
-		/*const li = `<li  class="appliance-tag tag" data-value="appliance">${appliance} </li>`;
-		optionsAppliances.insertAdjacentHTML("beforeend", li);*/
-	});
-
-	const tagElements = document.querySelectorAll(".tag");
-
-	const recipesArray = await getRecettesApiData();
-	tagElements.forEach((el) => {
-		//console.log("tags", el);
-
-		el.addEventListener("click", () => {
-			//optionsIngedients.classList.add("selected");
-			//tagElements.className = "selected";
-			optionsIngedients.appendChild(el);
-			console.log("tags", el);
-			el.setAttribute("class", "selected");
-			console.log("tags", el);
-
-			createTag(el);
-
-			let filtredRecipes = updateFilterElements(recipesArray);
-
-			console.log("numOpen", numberRecipes);
-			console.log("display", filtredRecipes);
-			console.log("filtredRecipes : ", filtredRecipes);
-			addTag(filtredRecipes, searchInput);
-
-			const close = document.querySelectorAll(".close");
-			close.forEach((btn) => {
-				btn.addEventListener("click", (e) => {
-					el.style.display = "block";
-					e.target.closest("div").remove();
-					console.log("tag1");
-
-					let filtredRecipes = updateFilterElements(recipesArray);
-
-					console.log("close filtredRecipes: ", filtredRecipes);
-					addTag(filtredRecipes, searchInput);
-
-					console.log("numClose", numberRecipes);
-				});
-			});
-		});
-	});
-}
-
 export function searchTags() {
+	//const filter = (input) => input.replace(/[<>&"/=]/g, "");
 	ingredientInput.addEventListener("input", function () {
-		const tagIngredientValue = ingredientInput.value.toLowerCase();
+		//const tagIngredientValue = ingredientInput.value.toLowerCase();
+		const valueInput = filter(ingredientInput.value);
+		console.log("mmmmmmmmmmmmmmmmmm", valueInput);
+		const tagIngredientValue = normalizeValue(valueInput);
 		const allTagIngredients = document.querySelectorAll(".ingredient-tag");
 		filterList(allTagIngredients, ".ingredients-items", tagIngredientValue);
 	});
@@ -170,11 +61,8 @@ export function filterList(list, listClass, tagValue) {
 	displayedElement.classList.remove("none");
 
 	list.forEach((item) => {
-		const tagValueToCheck = item.innerHTML.toLowerCase();
-		//console.log("valueTochek", tagValueToCheck);
-
+		const tagValueToCheck = normalizeValue(item.innerHTML);
 		const containsTag = tagValueToCheck.includes(tagValue);
-
 		item.style.display = containsTag ? "" : "none";
 	});
 }
@@ -187,18 +75,6 @@ document.addEventListener("click", (e) => {
 	const allTagIngredients = document.querySelectorAll(".ingredient-tag");
 	const allTagUtensils = document.querySelectorAll(".ustensil-tag");
 	const allTagAppliance = document.querySelectorAll(".appliance-tag");
-
-	const filterSection = document.querySelectorAll(".filter-section ");
-	const filtershow = document.querySelector(".show");
-	const filterChevron = document.querySelector(".icon-chevron");
-
-	const isClickInsideInsideDropDow = Array.from(filterSection).some((box) =>
-		box.contains(e.target)
-	);
-	if (!isClickInsideInsideDropDow && filtershow !== null) {
-		filterChevron.classList.remove("icon-chevron");
-		filtershow.classList.remove("show");
-	}
 
 	if (!resetInputIngredients) {
 		ingredientsSearch.value = "";
@@ -213,16 +89,3 @@ document.addEventListener("click", (e) => {
 		filterList(allTagUtensils, ".utensils-items", "");
 	}
 });
-
-/*
-const dropdown = document.querySelector(".dropdown");
-const dropdownMenu = document.querySelector(".dropdown-menu");
-
-dropdown.addEventListener("click", (event) => {
-	dropdownMenu.classList.toggle("dropdownMenu--active");
-});
-
-dropdown.addEventListener("blur", (event) => {
-	dropdownMenu.classList.remove("dropdownMenu--active");
-});
-*/

@@ -4,7 +4,6 @@ const dropdownToggleBtns = document.querySelectorAll(".dropdown-toggle");
 export function dropdownToggle() {
 	dropdownToggleBtns.forEach((btnToggle) => {
 		btnToggle.addEventListener("click", () => {
-			console.log("Appel click");
 			const dropdownMenu = btnToggle.nextElementSibling;
 
 			if (dropdownMenu.classList.contains("show") == false) {
@@ -17,6 +16,8 @@ export function dropdownToggle() {
 		});
 	});
 }
+
+dropdownToggle();
 
 //fermer les menus en cas de click externe
 /*

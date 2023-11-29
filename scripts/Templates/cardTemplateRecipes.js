@@ -74,8 +74,6 @@ export default function cardTemplateRecipes(data) {
 		ingredients_container.appendChild(ingredients_Quantity);
 	});
 
-	// <div id="card-container" class="col-12 col-lg-4">
-
 	card_container.appendChild(card);
 	card.appendChild(imgContainer);
 	card.appendChild(cardBody);

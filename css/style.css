@@ -256,7 +256,12 @@ ul::-webkit-scrollbar {
 	right: -70px;
 	transform: translateY(-50%);
 }
-
+/*
+.icon-chevron-up {
+	
+	transform: translateY(-30%);
+}
+*/
 .dropdown-search {
 	position: sticky;
 	top: 0;
@@ -324,7 +329,9 @@ ul li:focus {
 	background-color: #ffd15b;
 	overflow: hidden; 
 }*/
-li.ingredient-tag.tag.selected {
+li.ingredient-tag.tag.selected,
+li.appliance-tag.tag.selected,
+li.ustensil-tag.tag.selected {
 	position: relative;
 	background-color: #ffd15b;
 	overflow: hidden;
@@ -332,7 +339,9 @@ li.ingredient-tag.tag.selected {
 	/* visibility: hidden; */
 }
 
-li.ingredient-tag.tag.selected::after {
+li.ingredient-tag.tag.selected::after,
+li.appliance-tag.tag.selected::after,
+li.ustensil-tag.tag.selected::after {
 	content: url(../assets/icons/cross-tag-list.svg);
 	position: absolute;
 	right: 5px;
@@ -556,8 +565,4 @@ li.ingredient-tag.tag.selected::after {
 
 .filter__is-collapsed {
 	display: flex;
-}
-
-.icon-chevron-up {
-	transform: rotate(0.5turn);
 }

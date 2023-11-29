@@ -2,14 +2,10 @@ import { getRecettesApiData } from "../Api/api.js";
 import cardTemplateRecipes from "../Templates/cardTemplateRecipes.js";
 import { createTag } from "../Templates/createTag.js";
 import { updateFilterElements } from "../utils/updateFilters.js";
+import { dropdownToggle } from "../utils/dropdownMenuToggle.js";
+import { searchTags } from "../utils/searchTag.js";
+import { addTag } from "../utils/addTag.js";
 
-import {
-	getIngredient,
-	getUstensils,
-	getAppliances,
-	addTag,
-	searchTags,
-} from "../utils/searchTag.js";
 //import { dropdownToggle } from "../utils/dropdownMenuToggle.js";
 
 export default function displayRecipes(recipes) {
@@ -27,13 +23,9 @@ async function init() {
 	const dataRecipes = await getRecettesApiData();
 	numberRecipes.innerText = `${dataRecipes.length} recettes`;
 	displayRecipes(dataRecipes);
-	/*getIngredient(dataRecipes);
-	console.log("ttt", getIngredient(dataRecipes));
-	getUstensils(dataRecipes);
-	console.log("uuu", getUstensils(dataRecipes));
-	getAppliances(dataRecipes);
-	console.log("ooo", getAppliances(dataRecipes));*/
+
 	addTag(dataRecipes, "");
+	dropdownToggle();
 	searchTags();
 }
 

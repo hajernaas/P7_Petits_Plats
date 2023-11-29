@@ -2,9 +2,7 @@ const tagSection = document.querySelector(".tags-section");
 
 // Function to create a new tag
 export function createTag(tag) {
-	console.log("gg");
 	const categorie = tag.getAttribute("data-value");
-	console.log("categorie", categorie);
 
 	if (!categorie) return;
 
@@ -16,4 +14,14 @@ export function createTag(tag) {
 
 	tagSection.appendChild(tagElement);
 	//tag.style.display = "none";
+}
+
+export function removeTag(tag) {
+	console.log("tag to remove ", tag);
+	const allTags = document.querySelectorAll(".tags");
+	allTags.forEach((t) => {
+		if (tag.innerText == t.innerText) {
+			t.remove();
+		}
+	});
 }

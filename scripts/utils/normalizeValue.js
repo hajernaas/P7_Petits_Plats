@@ -8,3 +8,7 @@ export function normalizeValue(value) {
 			.replace(/[\u0300-\u036f]/g, "")
 	);
 }
+
+export function filter(input) {
+	return input.replace(/[<>&"/=]/g, "");
+}

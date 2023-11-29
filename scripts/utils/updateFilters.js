@@ -1,41 +1,18 @@
 import displayRecipes from "../pages/index.js";
+import { normalizeValue, filter } from "./normalizeValue.js";
+import { TagsSelected } from "./utils.js";
 const numberRecipes = document.querySelector(".recipes-count");
 
-export function normalizeValue(value) {
-	return (
-		value
-			.toLowerCase()
-			.replace(/\s/g, "")
-			// Enlever les accents
-			.normalize("NFD")
-			.replace(/[\u0300-\u036f]/g, "")
-	);
-}
-
 export function updateFilterElements(recipes) {
-	const searchedString = document.getElementById("searchInput").value;
-	let ingredientsArray = [];
-	let appreilxArray = [];
-	let ustensilesArray = [];
-
-	console.log("updateFilterElements ", recipes);
-	console.log("search string {} ", searchedString);
-
+	const searchedWord = document.getElementById("searchInput").value;
 	const allTags = document.querySelectorAll(".tags");
-	for (let i = 0; i < allTags.length; i++) {
-		console.log("alltags ::: ", allTags[i].innerHTML);
-	}
-	ingredientsArray = Array.from(allTags)
-		.filter((tag) => tag.getAttribute("data-value") === "ingredient")
-		.map((ingredient) => normalizeValue(ingredient.innerText));
 
-	appreilxArray = Array.from(allTags)
-		.filter((tag) => tag.getAttribute("data-value") === "appliance")
-		.map((ingredient) => normalizeValue(ingredient.innerText));
+	const safeInput = filter(searchedWord);
+	const searchedString = normalizeValue(safeInput);
 
-	ustensilesArray = Array.from(allTags)
-		.filter((tag) => tag.getAttribute("data-value") === "ustensil")
-		.map((ingredient) => normalizeValue(ingredient.innerText));
+	const ingredientsArray = TagsSelected(allTags, "ingredient");
+	const appliancesArray = TagsSelected(allTags, "appliance");
+	const ustensilsArray = TagsSelected(allTags, "ustensil");
 
 	let searchRecipes = recipes
 		.filter(
@@ -55,19 +32,15 @@ export function updateFilterElements(recipes) {
 				)
 		)
 		.filter(
-			(el) => appreilxArray.length == 0 || appreilxArray.includes(normalizeValue(el.appliance))
+			(el) => appliancesArray.length == 0 || appliancesArray.includes(normalizeValue(el.appliance))
 		)
 		.filter(
 			(el) =>
-				ustensilesArray.length == 0 ||
-				ustensilesArray.every((ev) =>
-					el.ustensils.some((element) => normalizeValue(element) === ev)
-				)
+				ustensilsArray.length == 0 ||
+				ustensilsArray.every((ev) => el.ustensils.some((element) => normalizeValue(element) === ev))
 		);
 
-	console.log("searchRecipes  : ", searchRecipes);
 	displayRecipes(searchRecipes);
 	numberRecipes.innerText = `${searchRecipes.length} recette`;
-	console.log("numUpdate", numberRecipes);
 	return searchRecipes;
 }
