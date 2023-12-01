@@ -1,23 +1,8 @@
-import { getRecettesApiData } from "../Api/api.js";
-import { updateFilterElements } from "./updateFilters.js";
-import { createTag } from "../Templates/createTag.js";
-import { removeTag } from "../Templates/removeTag.js";
-import { dropdownToggle } from "./dropdownMenuToggle.js";
 import { normalizeValue, filter } from "./normalizeValue.js";
-import { TagsSelected } from "./utils.js";
-
-const optionsIngedients = document.querySelector("#ingredients-tags");
-const optionsAppliances = document.querySelector("#appliances-tags");
-const optionsUstensils = document.querySelector("#utensils-tags");
 
 const ingredientInput = document.querySelector("#ingredient-input");
 const applianceInput = document.querySelector("#appliance-input");
 const utensilInput = document.querySelector("#utensil-input");
-
-/*const ingredientList = document.querySelector(".ingredients-items");
-const deviceList = document.querySelector(".appliances-items");
-const ustensilList = document.querySelector(".ustensils-items");
-const search_input = document.querySelector(".search-input")*/
 
 const ingredientsSearchDropdownMenu = document.getElementById("ingredient");
 const ingredientsSearch = document.getElementById("ingredient-input");
@@ -28,45 +13,44 @@ const appliancesSearch = document.getElementById("appliance-input");
 const utensilSearchDropdownMenu = document.getElementById("utensil");
 const utensilSearch = document.getElementById("utensil-input");
 
-//const numberRecipes = document.querySelector(".recipes-count");
-//const filter = (input) => input.replace(/[<>&"/=]/g, "");
-dropdownToggle();
+/**********************************************************************************************
+ * Écouter un événement "input" avec addEventListener sur les champs de recherche
+ * pour ingrédients -appareils -ustensiles" et appeler la fonction filterList pour la recherche
+ **********************************************************************************************/
 
 export function searchTags() {
-	//const filter = (input) => input.replace(/[<>&"/=]/g, "");
 	ingredientInput.addEventListener("input", function () {
-		//const tagIngredientValue = ingredientInput.value.toLowerCase();
 		const valueInput = filter(ingredientInput.value);
-		console.log("mmmmmmmmmmmmmmmmmm", valueInput);
 		const tagIngredientValue = normalizeValue(valueInput);
 		const allTagIngredients = document.querySelectorAll(".ingredient-tag");
-		filterList(allTagIngredients, ".ingredients-items", tagIngredientValue);
+		filterList(allTagIngredients, tagIngredientValue);
 	});
 
 	applianceInput.addEventListener("input", function () {
-		const TagApplianceValue = applianceInput.value.toLowerCase();
+		const valueInput = filter(applianceInput.value);
+		const TagApplianceValue = normalizeValue(valueInput);
 		const allTagAppliance = document.querySelectorAll(".appliance-tag");
-		filterList(allTagAppliance, ".appliances-items", TagApplianceValue);
+		filterList(allTagAppliance, TagApplianceValue);
 	});
 
 	utensilInput.addEventListener("input", function () {
-		const TagUtensilValue = utensilInput.value.toLowerCase();
+		const valueInput = filter(utensilInput.value);
+		const TagUtensilValue = normalizeValue(valueInput);
 		const allTagUtensils = document.querySelectorAll(".ustensil-tag");
-		filterList(allTagUtensils, ".utensils-items", TagUtensilValue);
+		filterList(allTagUtensils, TagUtensilValue);
 	});
 }
 
-export function filterList(list, listClass, tagValue) {
-	const displayedElement = document.querySelector(listClass);
-	displayedElement.classList.remove("none");
-
+//Rechercher par mot clé tous élements dans les menus déroulants
+export function filterList(list, valueTag) {
 	list.forEach((item) => {
 		const tagValueToCheck = normalizeValue(item.innerHTML);
-		const containsTag = tagValueToCheck.includes(tagValue);
+		const containsTag = tagValueToCheck.includes(valueTag);
 		item.style.display = containsTag ? "" : "none";
 	});
 }
 
+// Réinitialiser les champs de recherche pour les filtres
 document.addEventListener("click", (e) => {
 	const resetInputIngredients = ingredientsSearchDropdownMenu.contains(e.target);
 	const resetInputAppliances = applianceSearchDropdownMenu.contains(e.target);
@@ -78,14 +62,14 @@ document.addEventListener("click", (e) => {
 
 	if (!resetInputIngredients) {
 		ingredientsSearch.value = "";
-		filterList(allTagIngredients, ".ingredients-items", "");
+		filterList(allTagIngredients, "");
 	}
 	if (!resetInputAppliances) {
 		appliancesSearch.value = "";
-		filterList(allTagAppliance, ".appliances-items", "");
+		filterList(allTagAppliance, "");
 	}
 	if (!resetInputUtensils) {
 		utensilSearch.value = "";
-		filterList(allTagUtensils, ".utensils-items", "");
+		filterList(allTagUtensils, "");
 	}
 });

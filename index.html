@@ -8,8 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/af057d8543.js" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/xss@1.0.14/dist/xss.min.js"></script>
     <title>Les Petits Plats</title>
 </head>
@@ -20,9 +19,9 @@
         <!-- Header -->
         <header role="banner">
             <div class="banner-container">
-                <img src="./assets/images/img_header.png" class="img-header" alt="background homepage" />
+                <img src="./assets/images/img_header.png" class="img-header" alt="background homepage">
                 <a href="./index.html">
-                    <img src="./assets/images/logo.png" class="logo" alt="logo homepage" /></a>
+                    <img src="./assets/images/logo.png" class="logo" alt="logo homepage"></a>
 
                 <div class="banner-search">
                     <h1 class="title-header">
@@ -31,7 +30,7 @@
                     </h1>
                     <div class="input-group search-bar">
                         <input type="search" id="searchInput" class="form-control rounded search-input"
-                            placeholder="Rechercher une recette, un ingrédient, " aria-label="Search" />
+                            placeholder="Rechercher une recette, un ingrédient, " aria-label="Search">
                         <div class="search-icon">
                             <button type="button" class="btn btn-dark magnifying-glass">
                                 <i class="fas fa-search"></i>
@@ -51,14 +50,14 @@
                         <button id="ingredient-toggle" class="btn dropdown-toggle " type="button" aria-haspopup="true"
                             aria-expanded="false">
                             Ingrédients
-                            <span class="fas fa-chevron-down icon-chevron icon-chevron-up"></span>
+                            <span class="fas fa-chevron-down icon-chevron" id="ch-ingr"></span>
                         </button>
 
-                        <div class="dropdown-menu" id="ingredient" aria-labelledby="ingredientDropdownToggle">
+                        <div class="dropdown-menu" id="ingredient" aria-labelledby="ingredient-toggle">
                             <div class="dropdown-search">
                                 <div class="input-group">
                                     <input id="ingredient-input" type="search" class="form-control search-input"
-                                        placeholder="Rechercher" aria-label="Rechercher" />
+                                        placeholder="Rechercher" aria-label="Rechercher">
 
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0"><i
@@ -87,13 +86,13 @@
                         <button id="appliance-toggle" class="btn dropdown-toggle" type="button" aria-haspopup="true"
                             aria-expanded="false">
                             Appareils
-                            <span class="fas fa-chevron-down icon-chevron icon-chevron-up"></span>
+                            <span class="fas fa-chevron-down icon-chevron icon-chevron-up " id="ch-app"></span>
                         </button>
-                        <div class="dropdown-menu" id="appliance" aria-labelledby="applianceDropdownToggle">
+                        <div class="dropdown-menu" id="appliance" aria-labelledby="appliance-toggle">
                             <div class="dropdown-search">
                                 <div class="input-group">
                                     <input id="appliance-input" type="search" class="form-control search-input"
-                                        placeholder="Rechercher" aria-label="Rechercher" />
+                                        placeholder="Rechercher" aria-label="Rechercher">
 
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0"><i
@@ -121,13 +120,13 @@
                         <button id="utensil-toggle" class="btn dropdown-toggle " type="button" aria-haspopup="true"
                             aria-expanded="false">
                             Ustensiles
-                            <span class="fas fa-chevron-down icon-chevron icon-chevron-up"></span>
+                            <span class="fas fa-chevron-down icon-chevron icon-chevron-up" id="ch-us"></span>
                         </button>
-                        <div class="dropdown-menu" id="utensil" aria-labelledby="utensilDropdownToggle">
+                        <div class="dropdown-menu" id="utensil" aria-labelledby="utensil-toggle">
                             <div class="dropdown-search">
                                 <div class="input-group">
                                     <input id="utensil-input" type="search" class="form-control search-input"
-                                        placeholder="Rechercher" aria-label="Rechercher" />
+                                        placeholder="Rechercher" aria-label="Rechercher">
 
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-transparent border-0"><i
@@ -179,14 +178,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    </script>
+
     <script type="module" src="./scripts/Templates/cardTemplateRecipes.js"></script>
     <script type="module" src="./scripts/pages/index.js"></script>
     <script type="module" src="./scripts/utils/normalizeValue.js"></script>
     <script type="module" src="./scripts/utils/searchMainBar.js"></script>
+    <script type="module" src="./scripts/utils/updateFilters.js"></script>
+    <script type="module" src="./scripts/utils/addTag.js"></script>
+    <script type="module" src="./scripts/utils/searchTag.js"></script>
+    <script type="module" src="./scripts/utils/utils.js"></script>
     <script type="module" src="./scripts/utils/dropdownMenuToggle.js"></script>
     <script type="module" src="./scripts/Templates/createTag.js"></script>
-    <script type="module" src="./scripts/utils/searchTag.js"></script>
+    <script type="module" src="./scripts/Templates/removeTag.js"></script>
+
 
 
 

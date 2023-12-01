@@ -1,3 +1,4 @@
+//Fonction pour le formatage des inputs
 export function normalizeValue(value) {
 	return (
 		value
@@ -8,7 +9,7 @@ export function normalizeValue(value) {
 			.replace(/[\u0300-\u036f]/g, "")
 	);
 }
-
+//Fonction contre injection XSS
 export function filter(input) {
 	return input.replace(/[<>&"/=]/g, "");
 }

@@ -11,10 +11,7 @@ export default function cardTemplateRecipes(data) {
 
 	const imgContainer = document.createElement("div");
 	imgContainer.setAttribute("class", "img-container");
-
 	const img = document.createElement("img");
-	//const pictureRecipe = `assets/images/recettes/${image}`;
-	// img.setAttribute("src", pictureRecipe);
 	img.src = `assets/images/recettes/${image}`;
 	img.setAttribute("alt", `${name}`);
 	img.setAttribute("class", "card-img");

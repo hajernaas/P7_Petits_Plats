@@ -1,20 +1,19 @@
 import displayRecipes from "../pages/index.js";
 import { normalizeValue, filter } from "./normalizeValue.js";
 import { TagsSelected } from "./utils.js";
-const numberRecipes = document.querySelector(".recipes-count");
 
+//mettre à jour la recherche avanccée avec la recherche principale
 export function updateFilterElements(recipes) {
 	const searchedWord = document.getElementById("searchInput").value;
-	const allTags = document.querySelectorAll(".tags");
-
 	const safeInput = filter(searchedWord);
 	const searchedString = normalizeValue(safeInput);
 
+	const allTags = document.querySelectorAll(".tags");
 	const ingredientsArray = TagsSelected(allTags, "ingredient");
 	const appliancesArray = TagsSelected(allTags, "appliance");
 	const ustensilsArray = TagsSelected(allTags, "ustensil");
 
-	let searchRecipes = recipes
+	const searchRecipes = recipes
 		.filter(
 			(el) =>
 				searchedString.length < 3 ||
@@ -41,6 +40,5 @@ export function updateFilterElements(recipes) {
 		);
 
 	displayRecipes(searchRecipes);
-	numberRecipes.innerText = `${searchRecipes.length} recette`;
 	return searchRecipes;
 }

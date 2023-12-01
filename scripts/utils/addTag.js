@@ -5,10 +5,12 @@ import { removeTag } from "../Templates/removeTag.js";
 import { normalizeValue } from "./normalizeValue.js";
 import { TagsSelected, getIngredient, getUstensils, getAppliances } from "./utils.js";
 
-const optionsIngedients = document.querySelector("#ingredients-tags");
-const optionsAppliances = document.querySelector("#appliances-tags");
-const optionsUstensils = document.querySelector("#utensils-tags");
+const optIngedients = document.querySelector("#ingredients-tags");
+const optAppliances = document.querySelector("#appliances-tags");
+const optUstensils = document.querySelector("#utensils-tags");
 
+// créer une liste des tags dans le code HTML pour remplir les menus déroulants
+// et attribuer une classe selected au tag sélectionné
 export function createListTags(
 	arrayFilterSelector,
 	selectedArrayTags,
@@ -34,39 +36,26 @@ export function createListTags(
 	});
 }
 
-export async function addTag(arrayRecipes, searchInput) {
-	optionsIngedients.innerHTML = "";
-	optionsUstensils.innerHTML = "";
-	optionsAppliances.innerHTML = "";
+//Ajouter et supprimer des tags depuis le menu déroulant et faire le mise à jour des recettes
+export async function addTag(arrayRecipes) {
+	optIngedients.innerHTML = "";
+	optUstensils.innerHTML = "";
+	optAppliances.innerHTML = "";
 
-	const allTags = document.querySelectorAll(".tags");
 	const recipesArray = await getRecettesApiData();
-
-	const arrayIngredient = getIngredient(arrayRecipes);
-	const arrayUstensils = getUstensils(arrayRecipes);
-	const arrayAppliances = getAppliances(arrayRecipes);
+	const allTags = document.querySelectorAll(".tags");
+	const ingredients = getIngredient(arrayRecipes);
+	const ustensils = getUstensils(arrayRecipes);
+	const appliances = getAppliances(arrayRecipes);
 
 	const ingredientsArrayTags = TagsSelected(allTags, "ingredient");
 	const appliancesArrayTags = TagsSelected(allTags, "appliance");
 	const ustensilsArrayTags = TagsSelected(allTags, "ustensil");
 
-	console.log("aaaaaaaaaaaaaaaa", arrayAppliances, appliancesArrayTags);
+	createListTags(ingredients, ingredientsArrayTags, "ingredient", "ingredient-tag", optIngedients);
+	createListTags(appliances, appliancesArrayTags, "appliance", "appliance-tag", optAppliances);
+	createListTags(ustensils, ustensilsArrayTags, "ustensil", "ustensil-tag", optUstensils);
 
-	createListTags(
-		arrayIngredient,
-		ingredientsArrayTags,
-		"ingredient",
-		"ingredient-tag",
-		optionsIngedients
-	);
-	createListTags(
-		arrayAppliances,
-		appliancesArrayTags,
-		"appliance",
-		"appliance-tag",
-		optionsAppliances
-	);
-	createListTags(arrayUstensils, ustensilsArrayTags, "ustensil", "ustensil-tag", optionsUstensils);
 	const tagElements = document.querySelectorAll(".tag");
 	tagElements.forEach((el) => {
 		el.addEventListener("click", () => {
@@ -79,19 +68,18 @@ export async function addTag(arrayRecipes, searchInput) {
 				removeTag(el);
 			} else {
 				console.log("add tag");
-				createTag(el);
-			}
-			let filtredRecipes = updateFilterElements(recipesArray);
-			addTag(filtredRecipes, searchInput);
-			const close = document.querySelectorAll(".close");
-			close.forEach((btn) => {
-				btn.addEventListener("click", (e) => {
-					el.style.display = "block";
+				const tagElementCreated = createTag(el);
+				tagElementCreated.addEventListener("click", (e) => {
+					e.stopPropagation();
+					console.log("remove tag element");
 					e.target.closest("div").remove();
-					let filtredRecipes = updateFilterElements(recipesArray);
-					addTag(filtredRecipes, searchInput);
+					const filtredRecipes = updateFilterElements(recipesArray);
+					addTag(filtredRecipes);
 				});
-			});
+			}
+
+			const filtredRecipes = updateFilterElements(recipesArray);
+			addTag(filtredRecipes);
 		});
 	});
 }

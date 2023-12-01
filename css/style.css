@@ -10,7 +10,7 @@
 
 :root {
 	/*color*/
-	--black-tile: ##000000;
+	--black-tile: #000000;
 	--black: #1b1b1b;
 	--yellow: #ffd15b;
 	--white: #ffffff;
@@ -227,6 +227,8 @@ ul::-webkit-scrollbar {
 	margin-left: 0.5em;
 	vertical-align: middle;
 	transition: transform 0.2s;
+	/* pointer-events: none; */
+	/* z-index: 3; */
 }
 
 .dropdown-toggle::after {
@@ -256,12 +258,23 @@ ul::-webkit-scrollbar {
 	right: -70px;
 	transform: translateY(-50%);
 }
-/*
+
 .icon-chevron-up {
-	
-	transform: translateY(-30%);
+	/* transform: translateY(-30%); */
+	transform: rotate(0.5turn);
 }
-*/
+
+/*.filter__chevron {
+	z-index: 3;
+	position: absolute;
+	top: 22px;
+	right: 15px;
+	transition: all 250ms;
+	pointer-events: none;
+}
+.filter__chevron--up {
+	transform: rotate(0.5turn);
+}*/
 .dropdown-search {
 	position: sticky;
 	top: 0;
@@ -342,7 +355,7 @@ li.ustensil-tag.tag.selected {
 li.ingredient-tag.tag.selected::after,
 li.appliance-tag.tag.selected::after,
 li.ustensil-tag.tag.selected::after {
-	content: url(../assets/icons/cross-tag-list.svg);
+	content: url(../assets/icons/circle-xmark.svg);
 	position: absolute;
 	right: 5px;
 	top: 3px;
@@ -561,8 +574,4 @@ li.ustensil-tag.tag.selected::after {
 		gap: 20px;
 		justify-content: center;
 	}
-}
-
-.filter__is-collapsed {
-	display: flex;
 }

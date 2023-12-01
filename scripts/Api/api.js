@@ -1,3 +1,4 @@
+// Récupération des infos sur les recettes  depuis le fichier JSON
 export async function getRecettesApiData() {
 	try {
 		const url = "./data/recipes.json";
