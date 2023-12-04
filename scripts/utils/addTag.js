@@ -18,11 +18,7 @@ export function createListTags(
 	tagName,
 	parentElement
 ) {
-	console.log("arrayFilterSelector", arrayFilterSelector);
-	console.log("selectedArrayTags", selectedArrayTags);
-	console.log("typeSelector", typeSelector);
-	console.log("tagName", tagName);
-
+	parentElement.innerHTML = "";
 	arrayFilterSelector.forEach((filterSelector) => {
 		let cls = [tagName, "tag"];
 		if (selectedArrayTags.includes(normalizeValue(filterSelector))) {

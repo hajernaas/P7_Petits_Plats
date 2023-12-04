@@ -1,4 +1,4 @@
-import { normalizeValue, filter } from "./normalizeValue.js";
+import { normalizeValue, xssFilter } from "./normalizeValue.js";
 
 const ingredientInput = document.querySelector("#ingredient-input");
 const applianceInput = document.querySelector("#appliance-input");
@@ -20,21 +20,21 @@ const utensilSearch = document.getElementById("utensil-input");
 
 export function searchTags() {
 	ingredientInput.addEventListener("input", function () {
-		const valueInput = filter(ingredientInput.value);
+		const valueInput = xssFilter(ingredientInput.value);
 		const tagIngredientValue = normalizeValue(valueInput);
 		const allTagIngredients = document.querySelectorAll(".ingredient-tag");
 		filterList(allTagIngredients, tagIngredientValue);
 	});
 
 	applianceInput.addEventListener("input", function () {
-		const valueInput = filter(applianceInput.value);
+		const valueInput = xssFilter(applianceInput.value);
 		const TagApplianceValue = normalizeValue(valueInput);
 		const allTagAppliance = document.querySelectorAll(".appliance-tag");
 		filterList(allTagAppliance, TagApplianceValue);
 	});
 
 	utensilInput.addEventListener("input", function () {
-		const valueInput = filter(utensilInput.value);
+		const valueInput = xssFilter(utensilInput.value);
 		const TagUtensilValue = normalizeValue(valueInput);
 		const allTagUtensils = document.querySelectorAll(".ustensil-tag");
 		filterList(allTagUtensils, TagUtensilValue);

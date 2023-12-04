@@ -1,11 +1,46 @@
 import displayRecipes from "../pages/index.js";
-import { normalizeValue, filter } from "./normalizeValue.js";
+import { normalizeValue, xssFilter } from "./normalizeValue.js";
 import { TagsSelected } from "./utils.js";
+
+export function mainSearchRecipes(recipes, searchedValue) {
+	const updateRecipes = [];
+	console.log("searchedWord", searchedValue);
+	const word = xssFilter(searchedValue);
+	const searchedWord = normalizeValue(word);
+
+	if (searchedWord.length < 3) {
+		return recipes;
+	}
+
+	for (let recipe of recipes) {
+		const name = normalizeValue(recipe.name);
+		const description = normalizeValue(recipe.description);
+
+		if (name.includes(searchedWord)) {
+			updateRecipes.push(recipe);
+			continue;
+		}
+		if (description.includes(searchedWord)) {
+			updateRecipes.push(recipe);
+			continue;
+		}
+		for (const { ingredient } of recipe.ingredients) {
+			if (normalizeValue(ingredient).includes(normalizeValue(searchedWord))) {
+				updateRecipes.push(recipe);
+				break;
+			}
+		}
+
+		console.log("updateRecipes", updateRecipes);
+	}
+
+	return updateRecipes;
+}
 
 //mettre à jour la recherche avanccée avec la recherche principale
 export function updateFilterElements(recipes) {
 	const searchedWord = document.getElementById("searchInput").value;
-	const safeInput = filter(searchedWord);
+	const safeInput = xssFilter(searchedWord);
 	const searchedString = normalizeValue(safeInput);
 
 	const allTags = document.querySelectorAll(".tags");
@@ -13,16 +48,9 @@ export function updateFilterElements(recipes) {
 	const appliancesArray = TagsSelected(allTags, "appliance");
 	const ustensilsArray = TagsSelected(allTags, "ustensil");
 
-	const searchRecipes = recipes
-		.filter(
-			(el) =>
-				searchedString.length < 3 ||
-				normalizeValue(el.name).includes(normalizeValue(searchedString)) ||
-				normalizeValue(el.description).includes(normalizeValue(searchedString)) ||
-				el.ingredients.some((element) =>
-					normalizeValue(element.ingredient).includes(normalizeValue(searchedString))
-				)
-		)
+	const dataRecipes = mainSearchRecipes(recipes, searchedString);
+
+	const searchRecipes = dataRecipes
 		.filter(
 			(el) =>
 				ingredientsArray.length == 0 ||

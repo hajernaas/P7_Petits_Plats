@@ -5,10 +5,8 @@ export function dropdownToggle() {
 	dropdownToggleBtns.forEach((btnToggle) => {
 		btnToggle.addEventListener("click", () => {
 			const dropdownMenu = btnToggle.nextElementSibling;
-			//const x = document.getElementById("ch-ingr");
 			if (dropdownMenu.classList.contains("show") == false) {
 				btnToggle.nextElementSibling.classList.remove("show");
-
 				document.getElementById("ch-ingr").classList.remove("icon-chevron-up");
 				btnToggle.setAttribute("aria-expanded", false);
 			}
