@@ -10,6 +10,6 @@ export function normalizeValue(value) {
 	);
 }
 //Fonction contre injection XSS
-export function filter(input) {
+export function xssFilter(input) {
 	return input.replace(/[<>&"/=]/g, "");
 }

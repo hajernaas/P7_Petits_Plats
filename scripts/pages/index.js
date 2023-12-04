@@ -4,13 +4,13 @@ import { getRecettesApiData } from "../Api/api.js";
 import cardTemplateRecipes from "../Templates/cardTemplateRecipes.js";
 import { searchTags } from "../utils/searchTag.js";
 import { addTag } from "../utils/addTag.js";
-import { filter, normalizeValue } from "../utils/normalizeValue.js";
+import { xssFilter, normalizeValue } from "../utils/normalizeValue.js";
 //Afficher les recettes dans le DOM
 export default function displayRecipes(recipes) {
 	const numberRecipes = document.querySelector(".recipes-count");
 	const recipesSection = document.querySelector(".recipes-section");
 	const searchedWord = document.getElementById("searchInput").value;
-	const safeInput = filter(searchedWord);
+	const safeInput = xssFilter(searchedWord);
 	const searchedString = normalizeValue(safeInput);
 
 	recipesSection.innerHTML = "";

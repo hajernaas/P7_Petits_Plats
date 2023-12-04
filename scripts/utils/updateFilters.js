@@ -1,11 +1,11 @@
 import displayRecipes from "../pages/index.js";
-import { normalizeValue, filter } from "./normalizeValue.js";
+import { normalizeValue, xssFilter } from "./normalizeValue.js";
 import { TagsSelected } from "./utils.js";
 
 //mettre à jour la recherche avanccée avec la recherche principale
 export function updateFilterElements(recipes) {
 	const searchedWord = document.getElementById("searchInput").value;
-	const safeInput = filter(searchedWord);
+	const safeInput = xssFilter(searchedWord);
 	const searchedString = normalizeValue(safeInput);
 
 	const allTags = document.querySelectorAll(".tags");
