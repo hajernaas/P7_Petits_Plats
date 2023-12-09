@@ -18,6 +18,7 @@ export default function displayRecipes(recipes) {
 	if (recipes.length == 0) {
 		numberRecipes.innerText = "0 recette";
 		const messageErreur = document.createElement("p");
+		messageErreur.classList.add("msg-error");
 		messageErreur.innerText = `Aucune recette ne contient ‘${searchedString}’  vous pouvez chercher «tarte aux pommes », « poisson », etc.`;
 		recipesSection.appendChild(messageErreur);
 	}

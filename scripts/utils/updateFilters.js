@@ -1,10 +1,9 @@
 import displayRecipes from "../pages/index.js";
 import { normalizeValue, xssFilter } from "./normalizeValue.js";
 import { TagsSelected } from "./utils.js";
-
+//Méthode itérative pour la recherche principale
 export function mainSearchRecipes(recipes, searchedValue) {
 	const updateRecipes = [];
-	console.log("searchedWord", searchedValue);
 	const word = xssFilter(searchedValue);
 	const searchedWord = normalizeValue(word);
 
@@ -12,7 +11,7 @@ export function mainSearchRecipes(recipes, searchedValue) {
 		return recipes;
 	}
 
-	for (let recipe of recipes) {
+	for (const recipe of recipes) {
 		const name = normalizeValue(recipe.name);
 		const description = normalizeValue(recipe.description);
 
@@ -30,14 +29,11 @@ export function mainSearchRecipes(recipes, searchedValue) {
 				break;
 			}
 		}
-
-		console.log("updateRecipes", updateRecipes);
 	}
-
 	return updateRecipes;
 }
 
-//mettre à jour la recherche avanccée avec la recherche principale
+//Mettre à jour la recherche avancée avec la recherche principale
 export function updateFilterElements(recipes) {
 	const searchedWord = document.getElementById("searchInput").value;
 	const safeInput = xssFilter(searchedWord);

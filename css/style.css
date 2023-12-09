@@ -381,6 +381,9 @@ li.ustensil-tag.tag.selected::after {
 .card-unit {
 	color: var(--grey);
 }
+.msg-error {
+	font-size: 16px;
+}
 
 /**RESPONSIVE**/
 
