@@ -382,6 +382,9 @@ li.ustensil-tag.tag.selected::after {
 	color: var(--grey);
 }
 
+.msg-error {
+	font-size: 16px;
+}
 /**RESPONSIVE**/
 
 @media (max-width: 1024px) {
@@ -423,7 +426,6 @@ li.ustensil-tag.tag.selected::after {
 		height: 20px;
 		width: 150px;
 	}
-
 	.img-header {
 		height: 400px;
 		width: 180%;

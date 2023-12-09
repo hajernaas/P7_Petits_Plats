@@ -2,7 +2,7 @@ import displayRecipes from "../pages/index.js";
 import { normalizeValue, xssFilter } from "./normalizeValue.js";
 import { TagsSelected } from "./utils.js";
 
-//mettre à jour la recherche avanccée avec la recherche principale
+//mettre à jour la recherche avancée avec la recherche principale
 export function updateFilterElements(recipes) {
 	const searchedWord = document.getElementById("searchInput").value;
 	const safeInput = xssFilter(searchedWord);
